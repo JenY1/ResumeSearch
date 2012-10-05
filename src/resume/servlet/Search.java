@@ -1,4 +1,4 @@
-package Servlet;
+package resume.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,6 +8,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.lucene.document.Document;
+import org.apache.lucene.search.ScoreDoc;
+
+import resume.search.Query;
+import resume.search.Result;
+
+
 
 /**
  * Servlet implementation class Search
@@ -33,8 +41,16 @@ public class Search extends HttpServlet {
 			String query = request.getParameter("q");
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter(  );
-			out.println(query);
-		
+			Query q = new Query(query);
+			Result test = resume.search.Search.SearchResumes(q);
+			
+		    out.println("Found " + test.getHits().length + " hits.");
+		    for(int i=0;i<test.getHits().length;++i) {
+		      int docId = test.getHits()[i].doc;
+		      Document d = test.getSearcher().doc(docId);
+		      out.println((i + 1) + ". " + d.get("title"));
+		    }
+
 	}
 
 	/**

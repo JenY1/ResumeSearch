@@ -1,4 +1,4 @@
-package Search;
+package resume.search;
 
 public class Query {
 	// get any information like name or skill 

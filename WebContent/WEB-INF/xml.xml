@@ -7,7 +7,7 @@
   </welcome-file-list>
   <servlet>
     <servlet-name>Search</servlet-name>
-    <servlet-class>Servlet.Search</servlet-class>
+    <servlet-class>resume.servlet.Search</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Search</servlet-name>

@@ -1,4 +1,4 @@
-package Stemmer;
+package resume.stemmer;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
