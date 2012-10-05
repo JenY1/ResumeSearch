@@ -49,16 +49,16 @@ public class Index {
 		try {
 			
 			// Stopwords 
-			CharArraySet arraySet = new CharArraySet(Version.LUCENE_40, 0, true); 
+			CharArraySet stopWords = new CharArraySet(Version.LUCENE_40, 0, true); 
 			CSVReader reader = new CSVReader(new FileReader("yourfile.csv"));
 		    String [] nextLine;
 		    while ((nextLine = reader.readNext()) != null) {
 		    	for (String line : nextLine) { 
-		    		arraySet.add(line);
+		    		stopWords.add(line);
 		    	} 
 		    }
 			
-			StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_40, arraySet);
+			StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_40, stopWords);
 			
 			// Store the index in memory 
 			Directory index = new RAMDirectory();
