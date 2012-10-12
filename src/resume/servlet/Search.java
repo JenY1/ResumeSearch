@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.lucene.document.Document;
-import org.apache.lucene.search.ScoreDoc;
 
 import resume.search.Query;
 import resume.search.Result;
@@ -42,7 +41,9 @@ public class Search extends HttpServlet {
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter(  );
 			Query q = new Query(query);
-			Result test = resume.search.Search.SearchResumes(q);
+			String stopWords = getServletContext().getRealPath("/WEB-INF/stopwords.csv");
+			String resumes = getServletContext().getRealPath("/WEB-INF/Index");
+			Result test = resume.search.Search.SearchResumes(q, stopWords, resumes);
 			
 		    out.println("Found " + test.getHits().length + " hits.");
 		    for(int i=0;i<test.getHits().length;++i) {
